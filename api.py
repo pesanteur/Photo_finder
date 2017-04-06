@@ -24,9 +24,18 @@ def face_checker(photo_list):
 
     return face_list
 
+def face_count(photo):
+    """Only works when photo is in current directory"""
+    image = fr.load_image_file(photo)
+    face_locations = fr.face_locations(image)
+    face_count = len(face_locations)
+    return face_count
+
 def check_for_folder():
+    # TODO: Create logic that allows user to somehow decide where they would like there
+    # photos with faces to be stored.
     work_dir = os.getcwd()
-    # Check if a 'Faces' folder already exists. This only walks foldera
+    # Check if a 'Faces' folder already exists. This only walks folders not files.
     dir_list = os.walk(work_dir).next()[1]
     count = 0
     for folder in dir_list:
@@ -41,8 +50,6 @@ def check_for_folder():
 
 def move_to_folder(face_list):
     """Moves photos with Faces to Face Folder"""
-    # TODO: Create logic that allows user to somehow decide where they would like there
-    # faces to be stored.
     check_for_folder()
     work_dir = os.getcwd()
     face_dir = work_dir + '/' + 'Faces'
