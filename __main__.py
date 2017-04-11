@@ -3,16 +3,7 @@
 import face_recognition as fr
 from utils import check_for_folder
 from utils import move_to_folder
-import os
-
-def photo_finder():
-    """Finds png, jpeg files in folder in current working directory."""
-    photo_list = []
-    for filename in os.listdir(os.getcwd()):
-        if filename.endswith('.png') or filename.endswith('.jpg'):
-            photo_list.append(filename)
-
-    return photo_list
+from utils import photo_finder
 
 def face_checker(photo_list):
     """Finds pictures with faces in list of photos"""
@@ -38,9 +29,14 @@ def find_face(image):
     image_encoding = fr.face_encodings(image)[0]
     return image_encoding
 
+def get_main_face():
+    # TODO: get main face to be compared but not from webcam
+    pass
+
 def face_match(unknown_image, known_image):
-    """Compares main face to faces found in list of photos.
-    This module needs further testing."""
+    """Compares main face to faces found in photo. Can be used repeatedly against other faces.
+    This module will find matching face despite other faces in photo. So only needs to be used once per photo.
+    """
     known_face = find_face(known_image)
     unknown_face = find_face(unknown_image)
     # Need to have at least two faces to compare against for the compare_faces module
