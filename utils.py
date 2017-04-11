@@ -3,6 +3,15 @@
 import os
 import shutil
 
+def photo_finder():
+    """Finds png, jpeg files in folder in current working directory."""
+    photo_list = []
+    for filename in os.listdir(os.getcwd()):
+        if filename.endswith('.png') or filename.endswith('.jpg'):
+            photo_list.append(filename)
+
+    return photo_list
+
 def check_for_folder():
     """Checks to see if target download folder is created. If not creates the folder"""
     work_dir = os.getcwd()
@@ -25,3 +34,6 @@ def move_to_folder(face_list):
     for photo in face_list:
         path = work_dir + '/' + photo
         shutil.copy(path, face_dir)
+
+def navigator(folder):
+    """For a given folder locates all"""
