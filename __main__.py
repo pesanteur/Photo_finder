@@ -38,11 +38,14 @@ def find_face(image):
     image_encoding = fr.face_encodings(image)[0]
     return image_encoding
 
-def face_match(unknown_image):
-    """Compares main face to faces found in list of photos."""
-    main_face = find_face()
-    unknown_face = fr.face_encodings(unknown_image)[0]
-    results = fr.compare_faces(main_face, unknown_face)
+def face_match(unknown_image, known_image):
+    """Compares main face to faces found in list of photos.
+    This module needs further testing."""
+    known_face = find_face(known_image)
+    unknown_face = find_face(unknown_image)
+    # Need to have at least two faces to compare against for the compare_faces module
+    # to get this to work with only one, treat 'known_face' as a list
+    results = fr.compare_faces([known_face], unknown_face)
     # Just return results for now. TODO: be more detailed about who is in the picture
     return results
 
