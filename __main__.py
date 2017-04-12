@@ -1,6 +1,6 @@
 import face_recognition as fr
 from utils import check_for_folder
-from __main__ import face_checker
+from face_finder import face_checker
 from utils import photo_finder
 from utils import move_to_folder
 
