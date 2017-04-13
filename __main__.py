@@ -4,6 +4,16 @@ from face_finder import face_checker
 from utils import photo_finder
 from utils import move_to_folder
 
+
+def get_args_parser():
+    import argparse
+    from arggparse import  RawTextHelpFormatter
+    p = argparse.ArgumentParser(description, formatter_class=RawTextHelpFormaatter)
+    subparsers = p.add_subparsers(dest='command')
+    subparsers.add_parser('me')
+    subparsers.add_parser('find_faces')
+    #TODO: Add more to parser
+
 if __name__ == "__main__":
     """Finds photos with faces in current working directory and
     Places said photos in folder called Faces."""
