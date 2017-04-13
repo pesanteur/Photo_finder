@@ -45,7 +45,9 @@ def face_match(unknown_image, known_image):
     # Just return results for now. TODO: be more detailed about who is in the picture
     return results
 
-if __name__ == "__main__":
+def find_all_faces():
+    """Finds photos with faces in current working directory.
+    Places said photos in a folder called Faces."""
     photo_list = photo_finder()
     face_list = face_checker(photo_list)
     move_to_folder(face_list)
