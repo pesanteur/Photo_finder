@@ -19,6 +19,7 @@ def get_args_parser():
     return p
 
 def main():
+    # Not working, fix this!!!
     parser = get_args_parser()
     args = parser.parse_args()
     if args.command == "me":
@@ -33,6 +34,11 @@ def main():
                 continue
     elif args.command == "all":
         find_all_faces()
+        print "Worked!"
     else:
         parser.print_help()
         parser.exit(1)
+        print "Did not work!"
+
+if __name__ == "main":
+    main()
