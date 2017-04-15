@@ -7,7 +7,7 @@ def photo_finder():
     """Finds png, jpeg files in folder in current working directory."""
     photo_list = []
     for filename in os.listdir(os.getcwd()):
-        if filename.endswith('.png') or filename.endswith('.jpg'):
+        if filename.endswith('.png') or filename.endswith('.jpg') or filename.endswith('.JPG'):
             photo_list.append(filename)
 
     return photo_list

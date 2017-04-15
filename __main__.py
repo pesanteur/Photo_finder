@@ -1,15 +1,13 @@
-from utils import check_for_folder
-from utils import photo_finder
-from utils import move_to_folder
-from face_finder import face_checker
-from face_finder import find_face
-from face_finder import face_match
-
+from utils import check_for_folder, photo_finder, move_to_folder
+from face_finder import face_checker, find_face, face_match, find_all_faces
 
 def get_args_parser():
     import argparse
-    from arggparse import  RawTextHelpFormatter
-    p = argparse.ArgumentParser(description, formatter_class=RawTextHelpFormaatter)
+    from argparse import  RawTextHelpFormatter
+    desc = 'Finds photos with faces in a folder.'
+    desc += '\nCan also find and arrange all photos in which a certain person is featured.'
+    desc += '\n These photos will then be placed in a folder.'
+    p = argparse.ArgumentParser(description=desc, formatter_class=RawTextHelpFormatter)
     subparsers = p.add_subparsers(dest='command')
     all_parser = subparsers.add_parser('all')
     #TODO: Add more to parser
@@ -40,5 +38,5 @@ def main():
         parser.exit(1)
         print "Did not work!"
 
-if __name__ == "main":
+if __name__ == "__main__":
     main()

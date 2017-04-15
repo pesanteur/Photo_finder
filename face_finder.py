@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
 import face_recognition as fr
-from utils import check_for_folder
-from utils import move_to_folder
-from utils import photo_finder
+from utils import check_for_folder, move_to_folder, photo_finder
+from tqdm import tqdm
 
 def face_checker(photo_list):
     """Finds pictures with faces in list of photos"""
     face_list = []
-    for photo in photo_list:
+    for photo in tqdm(photo_list): # insert loading bar with tqdm here
         image = fr.load_image_file(photo)
         face_locations = fr.face_locations(image)
         if face_locations:
