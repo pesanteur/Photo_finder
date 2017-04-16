@@ -1,6 +1,7 @@
 from utils import check_for_folder, photo_finder, move_to_folder
 from face_finder import face_checker, find_face, face_match, find_all_faces
 from tqdm import tqdm
+import face_recognition as fr
 
 def get_args_parser():
     import argparse
@@ -28,8 +29,19 @@ def main():
         import pdb; pdb.set_trace()
         for face in tqdm(face_list):
             face_encoding = find_face(face)
-            results = face_match(face_encoding, my_face)
+            # Face_match is broken. Standard compare_faces from facial_recognition works great.
+            # Either fix face_match or continue using compare_faces
+            """
+            results = face_match([face_encoding], my_face)
             if results[0] == True:
+                print "This works!"
+                move_to_folder(face)
+            else:
+                continue
+            """
+            results = fr.compare_faces([my_face], face_encoding)
+            if results[0]:
+                # move to folder is now broken. Fix this
                 move_to_folder(face)
             else:
                 continue
