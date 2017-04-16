@@ -30,10 +30,12 @@ def move_to_folder(face_list):
     """Moves photos with Faces to Faces Folder"""
     check_for_folder()
     work_dir = os.getcwd()
-    face_dir = work_dir + '/' + 'Faces'
+    face_dir = 'Faces'
+    face_dir_path = work_dir + '/' + face_dir
     for photo in face_list:
         path = work_dir + '/' + photo
         shutil.copy(path, face_dir)
 
 def navigator(folder):
     """For a given folder locates all"""
+    pass

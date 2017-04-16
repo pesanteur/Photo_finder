@@ -1,5 +1,6 @@
 from utils import check_for_folder, photo_finder, move_to_folder
 from face_finder import face_checker, find_face, face_match, find_all_faces
+from tqdm import tqdm
 
 def get_args_parser():
     import argparse
@@ -17,15 +18,16 @@ def get_args_parser():
     return p
 
 def main():
-    # Not working, fix this!!!
     parser = get_args_parser()
     args = parser.parse_args()
     if args.command == "me":
+        # me command is broken. Needs to be fixed. Run pdb here.
         my_face = find_face(args.filename)
         photo_list = photo_finder()
         face_list = face_checker(photo_list)
-        for face in face_list:
-            results = face_match(face, my_face)
+        for face in tqdm(face_list):
+            face_encoding = find_face(face)
+            results = face_match(face_encoding, my_face)
             if results:
                 move_to_folder(face)
             else:
