@@ -25,10 +25,11 @@ def main():
         my_face = find_face(args.filename)
         photo_list = photo_finder()
         face_list = face_checker(photo_list)
+        import pdb; pdb.set_trace()
         for face in tqdm(face_list):
             face_encoding = find_face(face)
             results = face_match(face_encoding, my_face)
-            if results:
+            if results[0] == True:
                 move_to_folder(face)
             else:
                 continue
