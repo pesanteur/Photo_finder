@@ -38,10 +38,8 @@ def face_match(unknown_image, known_image):
     """
     known_face = find_face(known_image)
     unknown_face = find_face(unknown_image)
-    # Need to have at least two faces to compare against for the compare_faces module
     # to get this to work with only one, treat 'known_face' as a list
     results = fr.compare_faces([known_face], unknown_face)
-    results = results[0]
     # Just return results for now. TODO: be more detailed about who is in the picture
     return results
 
