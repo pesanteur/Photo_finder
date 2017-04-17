@@ -26,7 +26,8 @@ def main():
         my_face = find_face(args.filename)
         photo_list = photo_finder()
         face_list = face_checker(photo_list)
-        import pdb; pdb.set_trace()
+       #  import pdb; pdb.set_trace()
+        my_pics = []
         for face in tqdm(face_list):
             face_encoding = find_face(face)
             # Face_match is broken. Standard compare_faces from facial_recognition works great.
@@ -42,9 +43,13 @@ def main():
             results = fr.compare_faces([my_face], face_encoding)
             if results[0]:
                 # move to folder is now broken. Fix this
-                move_to_folder(face)
+                my_pics.append(face)
             else:
                 continue
+        if my_pics:
+            move_to_folder(my_pics)
+        else:
+            print " There were no photos of you found!"
     elif args.command == "all":
         find_all_faces()
         print "Worked!"

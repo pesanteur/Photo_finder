@@ -28,6 +28,7 @@ def check_for_folder():
 
 def move_to_folder(face_list):
     """Moves photos with Faces to Faces Folder"""
+    # TODO: This function needs to be more generalized so that it can be used in other loops
     check_for_folder()
     work_dir = os.getcwd()
     face_dir = 'Faces'
