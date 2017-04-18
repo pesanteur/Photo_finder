@@ -27,28 +27,17 @@ def main():
         except IndexError:
             print "There is no face in the picture you chose."
             parser.exit(1)
-        #import pdb; pdb.set_trace()
+        import pdb; pdb.set_trace()
         photo_list = photo_finder()
         face_list = face_checker(photo_list)
         for photo in face_list:
-           # This won't work as my_face is not a filename.
-           # TODO: change to if photo == args.filename:
-            if photo == my_face:
-               face_list.remove(photo)
+            if photo == args.filename:
+                face_list.remove(photo)
         my_pics = []
         for face in tqdm(face_list):
             face_encoding = find_face(face)
-            # Face_match is broken. Standard compare_faces from facial_recognition works great.
-            # Either fix face_match or continue using compare_faces
-            """
-            results = face_match([face_encoding], my_face)
-            if results[0] == True:
-                print "This works!"
-                move_to_folder(face)
-            else:
-                continue
-            """
-            results = fr.compare_faces([my_face], face_encoding)
+            # Included a tolerance of 0.4 to see if script can differentiate between my brother and I.(not twins)
+            results = fr.compare_faces([my_face], face_encoding, 0.4)
             if results[0]:
                 my_pics.append(face)
             else:
