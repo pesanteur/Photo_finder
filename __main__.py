@@ -27,7 +27,6 @@ def main():
         except IndexError:
             print "There is no face in the picture you chose."
             parser.exit(1)
-        import pdb; pdb.set_trace()
         photo_list = photo_finder()
         face_list = face_checker(photo_list)
         for photo in face_list:
