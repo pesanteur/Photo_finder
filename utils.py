@@ -36,7 +36,3 @@ def move_to_folder(face_list):
     for photo in face_list:
         path = work_dir + '/' + photo
         shutil.copy(path, face_dir)
-
-def navigator(folder):
-    """For a given folder locates all"""
-    pass

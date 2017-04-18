@@ -22,11 +22,17 @@ def main():
     parser = get_args_parser()
     args = parser.parse_args()
     if args.command == "me":
-        # me command is broken. Needs to be fixed. Run pdb here.
-        my_face = find_face(args.filename)
+        try:
+            my_face = find_face(args.filename)
+        except IndexError:
+            print "There is no face in the picture you chose."
+            parser.exit(1)
+        #import pdb; pdb.set_trace()
         photo_list = photo_finder()
         face_list = face_checker(photo_list)
-       #  import pdb; pdb.set_trace()
+        for photo in face_list:
+           if photo == my_face:
+               face_list.remove(photo)
         my_pics = []
         for face in tqdm(face_list):
             face_encoding = find_face(face)
@@ -42,7 +48,6 @@ def main():
             """
             results = fr.compare_faces([my_face], face_encoding)
             if results[0]:
-                # move to folder is now broken. Fix this
                 my_pics.append(face)
             else:
                 continue
@@ -55,8 +60,8 @@ def main():
         print "Worked!"
     else:
         parser.print_help()
-        parser.exit(1)
         print "Did not work!"
+        parser.exit(1)
 
 if __name__ == "__main__":
     main()
