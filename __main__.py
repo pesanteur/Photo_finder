@@ -31,7 +31,9 @@ def main():
         photo_list = photo_finder()
         face_list = face_checker(photo_list)
         for photo in face_list:
-           if photo == my_face:
+           # This won't work as my_face is not a filename.
+           # TODO: change to if photo == args.filename:
+            if photo == my_face:
                face_list.remove(photo)
         my_pics = []
         for face in tqdm(face_list):
