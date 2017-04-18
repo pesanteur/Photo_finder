@@ -35,8 +35,8 @@ def main():
         my_pics = []
         for face in tqdm(face_list):
             face_encoding = find_face(face)
-            # Included a tolerance of 0.4 to see if script can differentiate between my brother and I.(not twins)
-            results = fr.compare_faces([my_face], face_encoding, 0.4)
+            # 0.5 good enough to differentiate between my brother and I. But caanot identify me in glasses (fine for now)
+            results = fr.compare_faces([my_face], face_encoding, 0.5)
             if results[0]:
                 my_pics.append(face)
             else:
