@@ -3,16 +3,34 @@
 import face_recognition as fr
 from utils import check_for_folder, move_to_folder, photo_finder
 from tqdm import tqdm
+import time
+
+def face_locater(photo):
+    image = fr.load_image_file(photo)
+    face_locations = fr.face_locations(image)
+    if face_locations:
+        return True, photo
+    else:
+        return False, None
 
 def face_checker(photo_list):
     """Finds pictures with faces in list of photos"""
     face_list = []
+    start_time = time.time()
+    # TODO: Create a test here to turn non-list into a list, otherwise this function breaks
     for photo in tqdm(photo_list): # insert loading bar with tqdm here
-        image = fr.load_image_file(photo)
-        face_locations = fr.face_locations(image)
+        face_locations = face_locater(photo)
         if face_locations:
             face_list.append(photo)
+    print "-- %s seconds --" % (time.time() - start_time)
+    return face_list
 
+def map_face_checker(photo_list):
+    """Finds pictures with faces in list of photos"""
+    face_list = []
+    start_time = time.time()
+    face_list = map(face_locater, photo_list)
+    print "-- %s seconds --" % (time.time() - start_time)
     return face_list
 
 def face_count(photo):

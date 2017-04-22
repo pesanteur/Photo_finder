@@ -1,5 +1,7 @@
 *.pyc
 <<<<<<< HEAD
 *.sh
+for_test.py
+map_test.py
 =======
 >>>>>>> 7798ff66862555e2ab6aa473a48317219b5807bc
