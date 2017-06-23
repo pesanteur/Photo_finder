@@ -1,0 +1,5 @@
+setup.py
+photo_finder_py.egg-info/PKG-INFO
+photo_finder_py.egg-info/SOURCES.txt
+photo_finder_py.egg-info/dependency_links.txt
+photo_finder_py.egg-info/top_level.txt

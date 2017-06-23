@@ -1,5 +1,5 @@
 from setuptools import setup
-from .__init__ import __version__, __email__, __author__
+from __init__ import __version__, __email__, __author__
 
 __version__ = __version__
 __author__  = __author__

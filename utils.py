@@ -12,27 +12,18 @@ def photo_finder():
 
     return photo_list
 
-def check_for_folder():
+def check_for_folder(face_dir='Faces'):
     """Checks to see if target download folder is created. If not creates the folder"""
     work_dir = os.getcwd()
-    # The following only walks folders. Ignores files
-    dir_list = os.walk(work_dir).next()[1]
-    count = 0
-    for folder in dir_list:
-        if folder != 'Faces':
-            continue
-        else:
-            count += 1
-    if count == 0:
-        os.mkdir('Faces')
+    dir_list = os.walk(work_dir).next()[1] # The following only walks folders. Ignores files NOTE: Only works in python2, os.walk is generator in python3
+    if 'Faces' not in dir_list:
+        os.mkdir(face_dir)
 
-def move_to_folder(face_list):
+def move_to_folder(face_list, face_dir='Faces'):
     """Moves photos with Faces to Faces Folder"""
     # TODO: This function needs to be more generalized so that it can be used in other loops
     check_for_folder()
     work_dir = os.getcwd()
-    face_dir = 'Faces'
-    face_dir_path = work_dir + '/' + face_dir
     for photo in face_list:
         path = work_dir + '/' + photo
         shutil.copy(path, face_dir)
